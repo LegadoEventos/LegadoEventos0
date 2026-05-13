@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LEGADO EVENTOS - Panel de Control</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body, html { 
+            height: 100vh; margin: 0; display: flex; justify-content: center; 
+            align-items: center; background-color: #000; font-family: 'Montserrat', sans-serif; 
+            overflow: hidden;
+        }
+
+        /* --- CARRUSEL DE FONDO --- */
+        .background-carousel { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .slide { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; animation: carouselAnim 50s infinite; filter: brightness(30%) sepia(20%); }
+        .slide:nth-child(1)  { background-image: url('FONDO1.jpg');  animation-delay: 0s; }
+        .slide:nth-child(2)  { background-image: url('FONDO2.jpg');  animation-delay: 5s; }
+        .slide:nth-child(3)  { background-image: url('FONDO3.jpg');  animation-delay: 10s; }
+        .slide:nth-child(4)  { background-image: url('FONDO4.jpg');  animation-delay: 15s; }
+        .slide:nth-child(5)  { background-image: url('FONDO5.jpg');  animation-delay: 20s; }
+        .slide:nth-child(6)  { background-image: url('FONDO6.jpg');  animation-delay: 25s; }
+        .slide:nth-child(7)  { background-image: url('FONDO7.jpg');  animation-delay: 30s; }
+        .slide:nth-child(8)  { background-image: url('FONDO8.jpg');  animation-delay: 35s; }
+        .slide:nth-child(9)  { background-image: url('FONDO9.jpg');  animation-delay: 40s; }
+        .slide:nth-child(10) { background-image: url('FONDO10.jpg'); animation-delay: 45s; }
+        @keyframes carouselAnim { 0%, 100% { opacity: 0; } 2%, 10% { opacity: 1; } 12% { opacity: 0; } }
+
+        /* --- BOTÓN DE CONTACTO ESTILO ORO --- */
+        .boton-contacto {
+            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+            padding: 15px 40px; min-width: 180px; border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 2px; background-color: rgba(212, 175, 55, 0.05); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); color: #fff; text-transform: uppercase; font-size: 0.75rem;
+            letter-spacing: 4px; cursor: pointer; z-index: 100; transition: all 0.4s ease; text-decoration: none; text-align: center; font-weight: 700;
+        }
+        .boton-contacto:hover { background-color: #d4af37; color: #000; border-color: #d4af37; transform: translateX(-50%) translateY(-5px); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+
+        /* --- CONTENEDOR CENTRAL --- */
+        .master-container { position: relative; width: 400px; height: 400px; display: flex; justify-content: center; align-items: center; z-index: 10; }
+        
+        .contenedor-recorte { 
+            position: absolute; width: 400px; height: 400px; border-radius: 50%; z-index: 1; 
+            overflow: hidden; -webkit-mask-image: radial-gradient(circle, black 40%, transparent 75%); 
+            mask-image: radial-gradient(circle, black 40%, transparent 75%); 
+            cursor: pointer; text-decoration: none;
+        }
+        .imagen-fondo { width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.5; transition: all 0.5s ease; filter: grayscale(30%); }
+        .contenedor-recorte:hover .imagen-fondo { opacity: 1; transform: scale(1.08); filter: grayscale(0%); }
+        
+        .recorte-sonido { clip-path: polygon(50% 50%, 50% 0%, 0% 0%, 0% 75%, 23% 77%); }
+        .recorte-pantalla { clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 75%, 77% 77%); }
+        .recorte-luces { clip-path: polygon(50% 50%, 77% 77%, 100% 75%, 100% 100%, 0% 100%, 0% 75%, 23% 77%); }
+
+        /* --- ETIQUETAS CURVAS --- */
+        .etiqueta-curva { position: absolute; width: 400px; height: 400px; z-index: 15; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+        .etiqueta-curva span { position: absolute; left: 50%; font-weight: 900; font-size: 1.1rem; color: #d4af37; text-shadow: 0 0 10px rgba(0,0,0,1); }
+        .curva-pantalla span, .curva-sonido span { top: 15px; transform-origin: 0 185px; }
+        .curva-secul span { bottom: 15px; transform-origin: 0 -185px; }
+        
+        .master-container:has(.recorte-sonido:hover) .curva-sonido, 
+        .master-container:has(.recorte-pantalla:hover) .curva-pantalla, 
+        .master-container:has(.recorte-luces:hover) .curva-secul { opacity: 1; }
+        
+        .curva-pantalla { transform: rotate(35deg); }
+        .curva-sonido   { transform: rotate(-72deg); }
+        .curva-secul    { transform: rotate(0deg); }
+        
+        .circulo-exterior { 
+            position: absolute; width: 400px; height: 400px; 
+            border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50%; 
+            z-index: 5; pointer-events: none; 
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.2); 
+        }
+
+        /* --- NÚCLEO CENTRAL --- */
+        .circulo-central { 
+            width: 210px; height: 210px; border: 1px solid rgba(212, 175, 55, 0.5); 
+            border-radius: 50%; background-color: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; position: relative; z-index: 50; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(212, 175, 55, 0.1);
+            text-decoration: none; cursor: pointer; transition: all 0.4s ease;
+        }
+        .circulo-central:hover { border-color: #d4af37; transform: scale(1.03); box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
+        .circulo-central h1 { font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase; margin: 0; color: #fff; text-align: center; font-weight: 400; }
+        .nombre-grande { font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; color: #d4af37 !important; margin-top: 5px !important; }
+    </style>
+</head>
+<body>
+
+    <div class="background-carousel">
+        <div class="slide"></div><div class="slide"></div><div class="slide"></div><div class="slide"></div><div class="slide"></div>
+        <div class="slide"></div><div class="slide"></div><div class="slide"></div><div class="slide"></div><div class="slide"></div>
+    </div>
+
+    <a href="contacto.html" class="boton-contacto">Contacto</a>
+
+    <div class="master-container">
+        <a href="sonido.html" class="contenedor-recorte recorte-sonido">
+            <div class="imagen-fondo" style="background-image: url('SONIDO.jpg');"></div>
+        </a>
+        <a href="pantalla.html" class="contenedor-recorte recorte-pantalla">
+            <div class="imagen-fondo" style="background-image: url('PANTALLA.jpg');"></div>
+        </a>
+        <a href="secul.html" class="contenedor-recorte recorte-luces">
+            <div class="imagen-fondo" style="background-image: url('LUCES.jpg');"></div>
+        </a>
+        
+        <div class="circulo-exterior"></div>
+        
+        <!-- Etiquetas Curvas -->
+        <div class="etiqueta-curva curva-pantalla">
+            <span style="transform: rotate(0deg)">P</span><span style="transform: rotate(7deg)">A</span><span style="transform: rotate(14deg)">N</span><span style="transform: rotate(21deg)">T</span><span style="transform: rotate(28deg)">A</span><span style="transform: rotate(35deg)">L</span><span style="transform: rotate(42deg)">L</span><span style="transform: rotate(49deg)">A</span>
+        </div>
+        <div class="etiqueta-curva curva-sonido">
+            <span style="transform: rotate(0deg)">S</span><span style="transform: rotate(7deg)">O</span><span style="transform: rotate(14deg)">N</span><span style="transform: rotate(21deg)">I</span><span style="transform: rotate(28deg)">D</span><span style="transform: rotate(35deg)">O</span>
+        </div>
+        <div class="etiqueta-curva curva-secul">
+            <span style="transform: rotate(-14deg)">S</span><span style="transform: rotate(-7deg)">E</span><span style="transform: rotate(0deg)">C</span><span style="transform: rotate(7deg)">U</span><span style="transform: rotate(14deg)">L</span>
+        </div>
+        
+        <!-- Botón Legado Eventos con vínculo corregido -->
+        <a href="legadoeventos.html" class="circulo-central">
+            <h1>Legado</h1>
+            <h1 class="nombre-grande">EVENTOS</h1>
+        </a>
+    </div>
+
+</body>
+</html>

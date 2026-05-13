@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LEGADO EVENTOS - Nuestra Esencia</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        /* FONDO CON DESTELLOS ORO MINIMALISTAS */
+        body { 
+            margin: 0; padding: 0; 
+            background-color: #000;
+            background-image: 
+                radial-gradient(1px 1px at 25px 35px, #d4af37, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 80px, rgba(212, 175, 55, 0.5), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 150px 180px, #d4af37, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 260px 260px, rgba(212, 175, 55, 0.3), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 310px 110px, #d4af37, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 410px 410px, rgba(212, 175, 55, 0.5), rgba(0,0,0,0)),
+                radial-gradient(circle at center, #1a150a 0%, #000 100%);
+            background-size: 400px 400px, 300px 300px, 450px 450px, 500px 500px, 350px 350px, 600px 600px, 100% 100%;
+            background-attachment: fixed;
+            color: #fff; 
+            font-family: 'Montserrat', sans-serif; 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900;
+            letter-spacing: clamp(10px, 4vw, 20px); margin: 0; color: #fff;
+            text-shadow: 0 0 30px #d4af37; animation: fadeInGlow 2s ease-out; text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 1.1rem; letter-spacing: 5px; color: #d4af37;
+            margin-top: 30px; text-transform: uppercase; font-weight: 300;
+        }
+
+        .content-wrap { max-width: 900px; margin: -50px auto 100px; padding: 0 20px; }
+
+        .glass-card {
+            background: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); 
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 60px; border-radius: 5px; margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        h2 {
+            font-size: 1.4rem; letter-spacing: 5px; margin-bottom: 30px;
+            color: #fff; border-bottom: 1px solid #d4af37;
+            display: inline-block; padding-bottom: 10px; font-weight: 700;
+        }
+
+        p { font-size: 1.05rem; line-height: 2.2; color: rgba(255,255,255,0.9); letter-spacing: 0.5px; font-weight: 300; }
+        .destacado { color: #d4af37; font-weight: 700; }
+
+        /* FOOTER DINÁMICO */
+        .nav-footer { text-align: center; padding: 40px 0 100px; display: flex; flex-direction: column; align-items: center; }
+        
+        .btn-base { 
+            text-decoration: none; text-transform: uppercase; transition: all 0.5s ease; font-weight: 700; letter-spacing: 4px; border-radius: 2px;
+        }
+
+        .btn-contacto { 
+            background: #d4af37; color: #000; padding: 22px 70px; font-size: 0.9rem; border: 1px solid #d4af37;
+            margin-bottom: 80px; 
+        }
+        .btn-contacto:hover { background: #000; color: #d4af37; box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); transform: scale(1.05); }
+
+        .btn-regresar { 
+            color: rgba(255, 255, 255, 0.4); padding: 15px 40px; font-size: 0.6rem; border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .btn-regresar:hover { color: #d4af37; border-color: #d4af37; background: rgba(212, 175, 55, 0.05); transform: scale(1.02); }
+
+        @keyframes fadeInGlow {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <h1>LEGADO EVENTOS</h1>
+        <div class="tagline">planificamos momentos, creamos recuerdos</div>
+    </section>
+
+    <div class="content-wrap">
+        <div class="glass-card">
+            <h2>NUESTRA ESENCIA</h2>
+            <p>
+                Comprendemos los eventos desde todas las perspectivas posibles. Más de <span class="destacado">25 años de trayectoria</span> nos han brindado el conocimiento y las herramientas necesarias para garantizar resultados de excelencia, logrando <span class="destacado">JUNTOS</span> el desarrollo de jornadas <span class="destacado">ÁGILES, EFICACES y SEGURAS</span>.
+                <br><br>
+                Contamos con una experiencia demostrable en los eventos más diversos: desde Ferias, Congresos y Shows, hasta Festivales, Filmaciones y Teatros. Esta versatilidad ha potenciado nuestra capacidad de respuesta y nos permite ofrecer una <span class="destacado">infraestructura sólida</span> adaptable a cualquier desafío y puesta en escena.
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <h2>EXCELENCIA TÉCNICA</h2>
+            <p>
+                Capacitamos constantemente a nuestros operadores, poniendo a prueba su <span class="destacado">entendimiento y creatividad</span> para estar siempre a la altura de las exigencias técnicas. Garantizamos que nuestra tecnología de <span class="destacado">última generación</span> rinda al máximo en cada puesta en escena, asegurando la confiabilidad y el profesionalismo que su evento merece.
+            </p>
+        </div>
+
+        <div class="nav-footer">
+            <a href="contacto.html" class="btn-base btn-contacto">Contacto</a>
+            <!-- Texto actualizado -->
+            <a href="eventos.html" class="btn-base btn-regresar">Regresar al Inicio</a>
+        </div>
+    </div>
+
+</body>
+</html>

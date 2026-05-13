@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <style>
+        /* Fondo negro por defecto mientras carga la imagen */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000; 
+            overflow: hidden;
+        }
+
+        /* Enlace que ocupa toda la pantalla */
+        .pantalla-boton {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            text-decoration: none;
+            cursor: pointer;
+            
+            /* Configuración de la imagen de fondo */
+            background-image: url('imagen-fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* Transición suave para el efecto visual */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Efecto visual al pasar el cursor (hover) */
+        .pantalla-boton:hover {
+            opacity: 0.8; 
+            transform: scale(1.01); 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Redirección directa a eventos.html -->
+    <a href="eventos.html" class="pantalla-boton" title="Hacé clic para ingresar a Eventos">
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LEGADO EVENTOS - Contacto</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            background-color: #000; color: #fff; 
+            font-family: 'Montserrat', sans-serif; 
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+        }
+
+        .background-clean { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: radial-gradient(circle at center, #1a150a 0%, #000 100%); 
+            z-index: -1;
+        }
+
+        .container { 
+            text-align: center; width: 95%; max-width: 600px; padding: 60px 40px; 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid rgba(212, 175, 55, 0.1); 
+            border-radius: 5px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+        }
+
+        h1 { 
+            font-size: 2.8rem; 
+            letter-spacing: 8px; margin-bottom: 25px; 
+            font-weight: 900; text-transform: uppercase; 
+            color: #fff; text-shadow: 0 0 20px #d4af37;
+        }
+
+        .intro-contacto {
+            color: #d4af37;
+            font-size: 1.1rem; 
+            line-height: 1.6;
+            letter-spacing: 1px;
+            margin-bottom: 45px;
+            font-weight: 400;
+        }
+
+        .info-contacto {
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+            font-weight: 300;
+        }
+
+        .cargo {
+            color: #d4af37;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .link-contacto {
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .link-contacto:hover { color: #d4af37; }
+
+        .btn-regresar { 
+            text-decoration: none; color: rgba(255, 255, 255, 0.5); 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            padding: 15px 40px; font-size: 0.7rem; 
+            letter-spacing: 4px; text-transform: uppercase; 
+            transition: all 0.5s ease; font-weight: 700;
+        }
+
+        .btn-regresar:hover { 
+            background: rgba(212, 175, 55, 0.05); color: #d4af37; 
+            border-color: #d4af37;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-clean"></div>
+
+    <div class="container">
+        <h1>CONTACTO</h1>
+        
+        <!-- Frase actualizada con "JUNTOS" -->
+        <p class="intro-contacto">Su consulta es el primer paso para crear juntos un evento inolvidable. Contáctenos.</p>
+        
+        <div class="info-contacto">
+            <span class="cargo">Email Empresarial</span>
+            <a href="mailto:legado.eventos001@gmail.com" class="link-contacto">legado.eventos001@gmail.com</a>
+
+            <span class="cargo">Líder de Ventas</span>
+            <a href="mailto:malbanello@hotmail.com" class="link-contacto">malbanello@hotmail.com</a>
+
+            <span class="cargo">Teléfono / WhatsApp</span>
+            <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7070</a>
+        </div>
+        
+        <a href="eventos.html" class="btn-regresar">Volver al Inicio</a>
+    </div>
+
+</body>
+</html>
