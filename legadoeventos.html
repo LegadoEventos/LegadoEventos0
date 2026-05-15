@@ -2,7 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- Línea de viewport obligatoria para activar el modo responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEGADO EVENTOS - Nuestra Esencia</title>
+    <!-- Carga corregida y completa de la tipografía Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         /* FONDO CON DESTELLOS ORO MINIMALISTAS */
@@ -27,50 +32,53 @@
 
         .hero-section {
             height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+            justify-content: center; align-items: center; text-align: center; 
+            padding: 0 20px; box-sizing: border-box;
         }
 
         .hero-section h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900;
-            letter-spacing: clamp(10px, 4vw, 20px); margin: 0; color: #fff;
+            font-size: clamp(2.2rem, 7vw, 5rem); font-weight: 900;
+            letter-spacing: clamp(6px, 4vw, 20px); margin: 0; color: #fff;
             text-shadow: 0 0 30px #d4af37; animation: fadeInGlow 2s ease-out; text-transform: uppercase;
         }
 
         .tagline {
-            font-size: 1.1rem; letter-spacing: 5px; color: #d4af37;
-            margin-top: 30px; text-transform: uppercase; font-weight: 300;
+            font-size: clamp(0.75rem, 2.5vw, 1.1rem); letter-spacing: clamp(3px, 1.5vw, 5px); color: #d4af37;
+            margin-top: 25px; text-transform: uppercase; font-weight: 300; line-height: 1.5; max-width: 90%;
         }
 
-        .content-wrap { max-width: 900px; margin: -50px auto 100px; padding: 0 20px; }
+        .content-wrap { max-width: 900px; margin: -30px auto 100px; padding: 0 20px; box-sizing: border-box; }
 
         .glass-card {
             background: rgba(0, 0, 0, 0.5); 
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px); 
             border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 60px; border-radius: 5px; margin-bottom: 40px;
+            padding: 60px 40px; border-radius: 5px; margin-bottom: 40px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-sizing: border-box;
         }
 
         h2 {
-            font-size: 1.4rem; letter-spacing: 5px; margin-bottom: 30px;
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem); letter-spacing: 4px; margin-top: 0; margin-bottom: 25px;
             color: #fff; border-bottom: 1px solid #d4af37;
-            display: inline-block; padding-bottom: 10px; font-weight: 700;
+            display: inline-block; padding-bottom: 10px; font-weight: 700; text-transform: uppercase;
         }
 
-        p { font-size: 1.05rem; line-height: 2.2; color: rgba(255,255,255,0.9); letter-spacing: 0.5px; font-weight: 300; }
+        p { font-size: clamp(0.95rem, 3vw, 1.05rem); line-height: 2; color: rgba(255,255,255,0.9); letter-spacing: 0.5px; font-weight: 300; margin-bottom: 0; }
         .destacado { color: #d4af37; font-weight: 700; }
 
         /* FOOTER DINÁMICO */
-        .nav-footer { text-align: center; padding: 40px 0 100px; display: flex; flex-direction: column; align-items: center; }
+        .nav-footer { text-align: center; padding: 40px 0 60px; display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box; }
         
         .btn-base { 
             text-decoration: none; text-transform: uppercase; transition: all 0.5s ease; font-weight: 700; letter-spacing: 4px; border-radius: 2px;
+            display: inline-block; box-sizing: border-box; max-width: 100%;
         }
 
         .btn-contacto { 
             background: #d4af37; color: #000; padding: 22px 70px; font-size: 0.9rem; border: 1px solid #d4af37;
-            margin-bottom: 80px; 
+            margin-bottom: 50px; 
         }
         .btn-contacto:hover { background: #000; color: #d4af37; box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); transform: scale(1.05); }
 
@@ -82,6 +90,48 @@
         @keyframes fadeInGlow {
             from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* ==========================================================================
+           MEDIA QUERIES PARA RESPONSIVE DESIGN (MÓVILES Y TABLETS)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .content-wrap {
+                margin-top: 0; /* Suaviza la transición desde el Hero en celulares */
+                padding: 0 15px;
+            }
+
+            .glass-card {
+                padding: 40px 20px; /* Menor espacio lateral para dar aire al texto */
+                margin-bottom: 30px;
+            }
+
+            p {
+                line-height: 1.8; /* Ajuste sutil de lectura en pantallas chicas */
+                text-align: justify; /* Mejora la maquetación del texto de bloque */
+            }
+
+            .btn-contacto {
+                padding: 18px 40px; /* Dimensiones adaptadas para pulsaciones táctiles */
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+                width: 100%; /* Botón de ancho completo ergonómico */
+                margin-bottom: 40px;
+            }
+
+            .btn-regresar {
+                padding: 15px 20px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .glass-card {
+                padding: 30px 15px;
+            }
+            h2 {
+                letter-spacing: 2px;
+            }
         }
     </style>
 </head>
@@ -111,10 +161,10 @@
 
         <div class="nav-footer">
             <a href="contacto.html" class="btn-base btn-contacto">Contacto</a>
-            <!-- Texto actualizado -->
             <a href="eventos.html" class="btn-base btn-regresar">Regresar al Inicio</a>
         </div>
     </div>
 
 </body>
 </html>
+
