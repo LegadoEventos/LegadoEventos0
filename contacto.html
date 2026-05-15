@@ -2,46 +2,58 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- Línea de viewport obligatoria para activar el modo responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEGADO EVENTOS - Contacto</title>
-    <!-- Carga correcta de la tipografía Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Carga corregida y completa de la tipografía Montserrat -->
+    <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     
     <style>
         body, html { 
-            margin: 0; padding: 0; height: 100%; 
+            margin: 0; padding: 0; min-height: 100%; 
             background-color: #000; color: #fff; 
             font-family: 'Montserrat', sans-serif; 
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
+            /* Se cambia a auto para permitir scroll si el contenido supera la pantalla en móviles cortos */
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
+        /* FONDO ACTUALIZADO CON DESTELLO DORADO MÁS INTENSO */
         .background-clean { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: radial-gradient(circle at center, #1a150a 0%, #000 100%); 
+            background: 
+                /* Capa superior: Destello dorado de alta intensidad en el centro (30% de opacidad) */
+                radial-gradient(circle at center, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.05) 40%, rgba(0, 0, 0, 0) 80%),
+                /* Capa inferior: Degradado oscuro original del sitio */
+                radial-gradient(circle at center, #1a150a 0%, #000 100%); 
             z-index: -1;
         }
 
         .container { 
-            text-align: center; width: 95%; max-width: 600px; padding: 60px 40px; 
-            background: rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
-            border: 1px solid rgba(212, 175, 55, 0.1); 
+            text-align: center; width: 90%; max-width: 600px; padding: 60px 40px; 
+            /* Se bajó levemente la opacidad del fondo blanco para que trasluzca más el destello dorado */
+            background: rgba(255, 255, 255, 0.015); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
+            border: 1px solid rgba(212, 175, 55, 0.15); /* Borde un poco más brillante */
             border-radius: 5px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7); 
+            box-sizing: border-box;
+            margin: 20px 0; /* Margen de seguridad para pantallas de baja altura */
         }
 
         h1 { 
-            font-size: 2.8rem; 
-            letter-spacing: 8px; margin-bottom: 25px; 
+            font-size: clamp(2rem, 7vw, 2.8rem); /* Tamaño fluido que se adapta al ancho de pantalla */
+            letter-spacing: 8px; margin-top: 0; margin-bottom: 25px; 
             font-weight: 900; text-transform: uppercase; 
             color: #fff; text-shadow: 0 0 20px #d4af37;
         }
 
         .intro-contacto {
             color: #d4af37;
-            font-size: 1.1rem; 
+            font-size: clamp(0.95rem, 4vw, 1.1rem); /* Escala de tamaño para celulares */
             line-height: 1.6;
             letter-spacing: 1px;
             margin-bottom: 45px;
@@ -63,7 +75,7 @@
             font-size: 0.8rem;
             letter-spacing: 2px;
             display: block;
-            margin-top: 20px;
+            margin-top: 25px;
             margin-bottom: 5px;
         }
 
@@ -72,6 +84,10 @@
             text-decoration: none;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            display: inline-block;
+            max-width: 100%;
+            word-wrap: break-word; /* Rompe el texto largo (como emails) para que no rompa el diseño */
+            font-size: clamp(0.85rem, 3.8vw, 1.1rem); /* Ajuste automático del tamaño de letra del link */
         }
         .link-contacto:hover { color: #d4af37; }
 
@@ -82,12 +98,58 @@
             letter-spacing: 4px; text-transform: uppercase; 
             transition: all 0.5s ease; font-weight: 700;
             display: inline-block;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .btn-regresar:hover { 
             background: rgba(212, 175, 55, 0.05); color: #d4af37; 
             border-color: #d4af37;
             transform: scale(1.02);
+        }
+
+        /* ==========================================================================
+           MEDIA QUERIES PARA RESPONSIVE DESIGN (MÓVILES Y TABLETS)
+           ========================================================================== */
+        @media (max-width: 576px) {
+            .container {
+                padding: 40px 20px; /* Reducción de relleno lateral en celulares */
+                width: 92%;
+            }
+            
+            h1 {
+                letter-spacing: 4px; /* Menor espaciado para que entre en una sola línea */
+                margin-bottom: 20px;
+            }
+
+            .intro-contacto {
+                margin-bottom: 30px;
+            }
+
+            .info-contacto {
+                margin-bottom: 35px;
+            }
+            
+            .cargo {
+                margin-top: 20px;
+            }
+
+            .btn-regresar {
+                width: 100%; /* El botón ocupa todo el ancho disponible para facilitar el clic */
+                padding: 15px 20px;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Ajuste para teléfonos extra pequeños o pantallas en modo horizontal corto */
+        @media (max-height: 650px) {
+            body, html {
+                align-items: flex-start; /* Evita que el contenedor quede cortado arriba */
+            }
+            .container {
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>
@@ -108,7 +170,7 @@
             <a href="mailto:malbanello@hotmail.com" class="link-contacto">malbanello@hotmail.com</a>
 
             <span class="cargo">Instagram</span>
-            <a href="https://instagram.com_" target="_blank" class="link-contacto">@legado.eventos_</a>
+            <a href="https://instagram.com" target="_blank" class="link-contacto">@legado.eventos_</a>
 
             <span class="cargo">Teléfono / WhatsApp</span>
             <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7070</a>
@@ -119,3 +181,4 @@
 
 </body>
 </html>
+
