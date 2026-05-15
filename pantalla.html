@@ -2,10 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- Línea de viewport obligatoria para activar el modo responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEGADO EVENTOS - Pantallas y Video</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Carga corregida y completa de la tipografía Montserrat -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body, html { margin: 0; padding: 0; background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
         .background-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #1a150a 0%, #000 100%); z-index: -1; }
 
         /* Hero */
@@ -15,19 +20,22 @@
             background-size: cover; background-position: center; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
             animation: heroFade 1.5s ease-out;
             margin-bottom: 0;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         @keyframes heroFade { from { opacity: 0; filter: blur(10px); } to { opacity: 1; filter: blur(0); } }
 
-        .hero-video h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 12px; margin: 0; font-weight: 900; text-shadow: 0 0 20px #d4af37; }
-        .hero-video p { font-size: 0.8rem; letter-spacing: 6px; color: #d4af37; margin-top: 15px; text-transform: uppercase; font-weight: 400; }
+        .hero-video h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); letter-spacing: 12px; margin: 0; font-weight: 900; text-shadow: 0 0 20px #d4af37; text-transform: uppercase; }
+        .hero-video p { font-size: clamp(0.65rem, 2.5vw, 0.8rem); letter-spacing: 6px; color: #d4af37; margin-top: 15px; text-transform: uppercase; font-weight: 400; line-height: 1.4; }
 
-        .main-content { max-width: 1100px; margin: 0 auto 50px; padding: 0 20px; }
+        .main-content { max-width: 1100px; margin: 0 auto 50px; padding: 0 20px; box-sizing: border-box; }
 
         .glass-card {
             position: relative; overflow: hidden;
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(212, 175, 55, 0.1);
-            padding: 60px; border-radius: 5px; margin-bottom: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 60px 40px; border-radius: 5px; margin-bottom: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             animation: slideUp 1s ease-out both;
+            box-sizing: border-box;
         }
 
         .card-led { margin-top: 0; border-top: none; border-radius: 0 0 5px 5px; }
@@ -40,17 +48,19 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         .highlight-text { color: #d4af37; font-weight: 900; }
-        h2 { font-size: 1.8rem; letter-spacing: 4px; margin-bottom: 25px; text-align: center; position: relative; z-index: 2; font-weight: 700; text-shadow: 0 2px 15px #000; }
-        .intro-p { line-height: 1.8; text-align: center; position: relative; z-index: 2; text-shadow: 0 2px 10px #000; margin-bottom: 40px; font-weight: 300; font-size: 1rem; }
+        h2 { font-size: clamp(1.4rem, 4vw, 1.8rem); letter-spacing: 4px; margin-bottom: 25px; text-align: center; position: relative; z-index: 2; font-weight: 700; text-shadow: 0 2px 15px #000; text-transform: uppercase; }
+        .intro-p { line-height: 1.8; text-align: center; position: relative; z-index: 2; text-shadow: 0 2px 10px #000; margin-bottom: 40px; font-weight: 300; font-size: clamp(0.9rem, 3vw, 1rem); }
 
-        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; position: relative; z-index: 2; }
+        /* Grid adaptativo con minmax corregido para celulares pequeños de hasta 320px */
+        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; position: relative; z-index: 2; }
 
         .spec-item {
             position: relative; min-height: 250px; border-radius: 5px; border: none; overflow: hidden;
-            display: flex; align-items: center; justify-content: center; background: transparent; transition: all 0.5s ease;
+            display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); transition: all 0.5s ease;
+            box-sizing: border-box;
         }
 
-        .spec-content { position: relative; padding: 20px; z-index: 10; width: 100%; text-align: center; transition: opacity 0.5s ease; }
+        .spec-content { position: relative; padding: 20px; z-index: 10; width: 100%; text-align: center; transition: opacity 0.5s ease; box-sizing: border-box; }
 
         .spec-item h3 { 
             font-size: 0.9rem; letter-spacing: 3px; color: #fff; margin-bottom: 15px; text-transform: uppercase; font-weight: 700;
@@ -58,10 +68,12 @@
         }
         .spec-item p { font-size: 0.85rem; line-height: 1.6; color: #fff; margin: 0 auto; max-width: 90%; text-shadow: 0 2px 10px #000; font-weight: 400; }
 
-        .spec-item:hover { transform: scale(1.05); }
+        .spec-item:hover { transform: scale(1.03); }
 
         .card-led-style .spec-item { background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.15); }
         .card-led-style .spec-item:hover { background: rgba(212, 175, 55, 0.05); box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.15); }
+        
+        /* Ocultar contenido en PC con hover */
         .card-led-style .spec-item:hover .spec-content { opacity: 0; }
         
         .slide-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; z-index: 1; transition: opacity 1s ease; }
@@ -72,15 +84,45 @@
 
         @keyframes KenBurns { 0% { opacity: 0; transform: scale(1); } 5% { opacity: 1; } 33% { opacity: 1; transform: scale(1.1); } 38% { opacity: 0; transform: scale(1.1); } 100% { opacity: 0; } }
 
-        .nav-footer { text-align: center; padding: 40px 0 100px; display: flex; flex-direction: column; align-items: center; }
-        
-        .btn-base { text-decoration: none; text-transform: uppercase; transition: all 0.5s ease; font-weight: 700; letter-spacing: 4px; border-radius: 2px; }
+        /* Estilo base para cajas estáticas en sección Mapping */
+        .glass-card:not(.card-led-style) .spec-item {
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+        }
 
-        .btn-contacto { background: #d4af37; color: #000; padding: 22px 70px; font-size: 0.9rem; border: 1px solid #d4af37; margin-bottom: 80px; }
+        .nav-footer { text-align: center; padding: 40px 0 100px; display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box; }
+        
+        .btn-base { text-decoration: none; text-transform: uppercase; transition: all 0.5s ease; font-weight: 700; letter-spacing: 4px; border-radius: 2px; display: inline-block; box-sizing: border-box; max-width: 100%; }
+
+        .btn-contacto { background: #d4af37; color: #000; padding: 22px 70px; font-size: 0.9rem; border: 1px solid #d4af37; margin-bottom: 40px; }
         .btn-contacto:hover { background: #000; color: #d4af37; box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); transform: scale(1.05); }
 
         .btn-regresar { color: rgba(255, 255, 255, 0.4); padding: 15px 40px; font-size: 0.6rem; border: 1px solid rgba(212, 175, 55, 0.15); }
         .btn-regresar:hover { color: #d4af37; border-color: #d4af37; background: rgba(212, 175, 55, 0.05); transform: scale(1.02); }
+
+        /* ==========================================================================
+           MEDIA QUERIES PARA DISPOSITIVOS MÓVILES (TABLETS Y CELULARES)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .hero-video { height: 45vh; } /* Reducción de altura del banner principal */
+            .hero-video h1 { letter-spacing: 6px; } /* Evita corte lateral del título */
+            .hero-video p { letter-spacing: 3px; }
+
+            .glass-card { padding: 40px 20px; margin-bottom: 30px; } /* Más espacio interno libre */
+            .specs-grid { gap: 20px; } /* Ajuste de rejilla */
+
+            /* Modificación para celulares: El contenido NO se oculta en hover, ya que se rompe la experiencia táctil */
+            .card-led-style .spec-item:hover .spec-content { opacity: 1; }
+            .card-led-style .spec-item .spec-content { background: rgba(0, 0, 0, 0.4); height: 100%; display: flex; flex-direction: column; justify-content: center; }
+
+            .btn-contacto { padding: 18px 40px; font-size: 0.8rem; letter-spacing: 2px; width: 100%; } /* Botón expandido ergonómico */
+            .btn-regresar { padding: 15px 20px; width: 100%; }
+        }
+
+        @media (max-width: 360px) {
+            .hero-video h1 { letter-spacing: 3px; }
+            .glass-card { padding: 30px 15px; }
+        }
     </style>
 </head>
 <body>
