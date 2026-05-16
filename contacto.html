@@ -2,10 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Línea de viewport obligatoria para activar el modo responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEGADO EVENTOS - Contacto</title>
-    <!-- Carga corregida y completa de la tipografía Montserrat -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -16,17 +14,13 @@
             background-color: #000; color: #fff; 
             font-family: 'Montserrat', sans-serif; 
             display: flex; justify-content: center; align-items: center;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow-x: hidden; overflow-y: auto;
         }
 
-        /* FONDO ACTUALIZADO CON DESTELLO DORADO MÁS INTENSO */
         .background-clean { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: 
-                /* Capa superior: Destello dorado de alta intensidad en el centro (30% de opacidad) */
                 radial-gradient(circle at center, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.05) 40%, rgba(0, 0, 0, 0) 80%),
-                /* Capa inferior: Degradado oscuro original del sitio */
                 radial-gradient(circle at center, #1a150a 0%, #000 100%); 
             z-index: -1;
         }
@@ -38,160 +32,55 @@
             border: 1px solid rgba(212, 175, 55, 0.15); 
             border-radius: 5px; 
             box-shadow: 0 30px 60px rgba(0,0,0,0.7); 
-            box-sizing: border-box;
-            margin: 40px 0; 
+            box-sizing: border-box; margin: 40px 0; 
         }
 
         h1 { 
-            font-size: clamp(2rem, 7vw, 2.8rem); 
-            letter-spacing: 8px; margin-top: 0; margin-bottom: 25px; 
-            font-weight: 900; text-transform: uppercase; 
-            color: #fff; text-shadow: 0 0 20px #d4af37;
+            font-size: clamp(2rem, 7vw, 2.8rem); letter-spacing: 8px; margin-top: 0; margin-bottom: 25px; 
+            font-weight: 900; text-transform: uppercase; color: #fff; text-shadow: 0 0 20px #d4af37;
         }
 
         .intro-contacto {
-            color: #d4af37;
-            font-size: clamp(0.95rem, 4vw, 1.1rem); 
-            line-height: 1.6;
-            letter-spacing: 1px;
-            margin-bottom: 45px;
-            font-weight: 400;
+            color: #d4af37; font-size: clamp(0.95rem, 4vw, 1.1rem); line-height: 1.6;
+            letter-spacing: 1px; margin-bottom: 45px; font-weight: 400;
         }
 
-        .info-contacto {
-            margin-bottom: 35px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.8);
-            font-weight: 300;
-        }
-
-        .cargo {
-            color: #d4af37;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            display: block;
-            margin-top: 25px;
-            margin-bottom: 5px;
-        }
+        .info-contacto { margin-bottom: 35px; font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.8); font-weight: 300; }
+        .cargo { color: #d4af37; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; display: block; margin-top: 25px; margin-bottom: 5px; }
 
         .link-contacto {
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            max-width: 100%;
-            word-wrap: break-word; 
-            font-size: clamp(0.85rem, 3.8vw, 1.1rem); 
+            color: #fff; text-decoration: none; letter-spacing: 1px; transition: all 0.3s ease;
+            display: inline-block; max-width: 100%; word-wrap: break-word; font-size: clamp(0.85rem, 3.8vw, 1.1rem); 
         }
         .link-contacto:hover { color: #d4af37; }
 
-        /* ==========================================================================
-           ESTILOS DEL FORMULARIO DE TRES CASILLAS
-           ========================================================================== */
-        .formulario-evento {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            text-align: left;
-            margin: 40px 0;
-            width: 100%;
-            box-sizing: border-box;
+        .formulario-evento { display: flex; flex-direction: column; gap: 25px; text-align: left; margin: 40px 0; width: 100%; box-sizing: border-box; }
+        .grupo-campo { display: flex; flex-direction: column; gap: 8px; width: 100%; box-sizing: border-box; }
+        .grupo-campo label { color: #d4af37; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; line-height: 1.4; }
+
+        .grupo-campo input, .grupo-campo textarea {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 4px;
+            padding: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.95rem;
+            transition: all 0.3s ease; box-sizing: border-box; width: 100%;
         }
 
-        .grupo-campo {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .grupo-campo label {
-            color: #d4af37;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 1.4;
-        }
-
-        .grupo-campo input, 
-        .grupo-campo textarea {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 4px;
-            padding: 16px;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .grupo-campo input:hover, 
-        .grupo-campo textarea:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .grupo-campo input:focus, 
-        .grupo-campo textarea:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #d4af37;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
-        }
-
-        .grupo-campo input::placeholder, 
-        .grupo-campo textarea::placeholder {
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 0.85rem;
-        }
+        .grupo-campo input:hover, .grupo-campo textarea:hover { border-color: rgba(212, 175, 55, 0.5); background: rgba(255, 255, 255, 0.05); }
+        .grupo-campo input:focus, .grupo-campo textarea:focus { outline: none; background: rgba(255, 255, 255, 0.08); border-color: #d4af37; box-shadow: 0 0 15px rgba(212, 175, 55, 0.25); }
+        .grupo-campo input::placeholder, .grupo-campo textarea::placeholder { color: rgba(255, 255, 255, 0.25); font-size: 0.85rem; }
 
         .btn-enviar-consulta {
-            background: #d4af37;
-            color: #000;
-            padding: 20px;
-            font-size: 0.9rem;
-            border: 1px solid #d4af37;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 4px;
-            transition: all 0.5s ease;
-            border-radius: 2px;
-            box-sizing: border-box;
+            background: #d4af37; color: #000; padding: 20px; font-size: 0.9rem; border: 1px solid #d4af37;
+            cursor: pointer; margin-top: 10px; width: 100%; text-transform: uppercase; font-weight: 700;
+            letter-spacing: 4px; transition: all 0.5s ease; border-radius: 2px; box-sizing: border-box;
         }
-        
-        .btn-enviar-consulta:hover {
-            background: #000;
-            color: #d4af37;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-        }
+        .btn-enviar-consulta:hover { background: #000; color: #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
 
         .btn-regresar { 
-            text-decoration: none; color: rgba(255, 255, 255, 0.5); 
-            border: 1px solid rgba(212, 175, 55, 0.3); 
-            padding: 15px 40px; font-size: 0.7rem; 
-            letter-spacing: 4px; text-transform: uppercase; 
-            transition: all 0.5s ease; font-weight: 700;
-            display: inline-block;
-            max-width: 100%;
-            box-sizing: border-box;
+            text-decoration: none; color: rgba(255, 255, 255, 0.5); border: 1px solid rgba(212, 175, 55, 0.3); 
+            padding: 15px 40px; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; 
+            transition: all 0.5s ease; font-weight: 700; display: inline-block; max-width: 100%; box-sizing: border-box;
         }
-
-        .btn-regresar:hover { 
-            background: rgba(212, 175, 55, 0.05); color: #d4af37; 
-            border-color: #d4af37;
-            transform: scale(1.02);
-        }
+        .btn-regresar:hover { background: rgba(212, 175, 55, 0.05); color: #d4af37; border-color: #d4af37; transform: scale(1.02); }
 
         @media (max-width: 576px) {
             .container { padding: 40px 20px; width: 92%; }
@@ -203,11 +92,6 @@
             .grupo-campo input, .grupo-campo textarea { padding: 14px; font-size: 0.9rem; }
             .btn-enviar-consulta { padding: 16px; font-size: 0.85rem; letter-spacing: 2px; }
             .btn-regresar { width: 100%; padding: 15px 20px; letter-spacing: 2px; }
-        }
-
-        @media (max-height: 650px) {
-            body, html { align-items: flex-start; }
-            .container { margin-top: 30px; margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -234,34 +118,33 @@
             <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7070</a>
         </div>
         
-        <!-- FORMULARIO SEGURO NATIVO OPTIMIZADO PARA GITHUB PAGES -->
+        <!-- FORMULARIO REESTRUCTURADO SIN CONFLICTOS DE ENRUTAMIENTO -->
         <form action="https://formspree.io" method="POST" class="formulario-evento">
             
-            <!-- Redirección automática configurada para tu URL de GitHub Pages -->
-            <input type="hidden" name="_next" value="https://legadoeventos.github.io/LegadoEventos0/contacto.html">
+            <!-- Corrección crítica: Se remueve la extensión interna de redirección para obligar a Formspree a procesar el POST primero en su página oficial de éxito -->
+            <input type="hidden" name="_subject" value="Nueva consulta desde Legado Eventos">
 
             <!-- CASILLA 1 -->
             <div class="grupo-campo">
                 <label for="necesidad">¿Que necesitan para su proximo evento?</label>
-                <textarea id="necesidad" name="¿Qué necesitan para el evento?" rows="4" placeholder="Escriba aquí los detalles, sistemas o equipamiento que requiere..." required></textarea>
+                <textarea id="necesidad" name="necesidad" rows="4" placeholder="Escriba aquí los detalles..." required></textarea>
             </div>
 
             <!-- CASILLA 2 -->
             <div class="grupo-campo">
                 <label for="dato_contacto">Dato de contacto</label>
-                <input type="text" id="dato_contacto" name="Dato de Contacto" placeholder="Ej: E-mail. Celular. Red social." required>
+                <input type="text" id="dato_contacto" name="contacto" placeholder="Ej: E-mail. Celular. Red social." required>
             </div>
 
             <!-- CASILLA 3 -->
             <div class="grupo-campo">
                 <label for="nombre_contacto">¿Con quien tenemos el gusto de hablar?</label>
-                <input type="text" id="nombre_contacto" name="Nombre del Contacto" placeholder="Su nombre o el de su empresa..." required>
+                <input type="text" id="nombre_contacto" name="nombre" placeholder="Su nombre o el de su empresa..." required>
             </div>
 
-            <button type="submit" class="btn-base btn-enviar-consulta">Enviar Formulario</button>
+            <button type="submit" class="btn-enviar-consulta">Enviar Formulario</button>
         </form>
         
-        <!-- BOTÓN CONCORDANTE GLOBAL -->
         <a href="eventos.html" class="btn-regresar">Regresar al Inicio</a>
     </div>
 
