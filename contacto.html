@@ -1,84 +1,57 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Contacto</title>
-    <style>
-        /* Estilos básicos para el diseño y el botón dorado */
-        .form-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        /* Botón dorado activado */
-        .btn-dorado {
-            width: 100%;
-            padding: 10px;
-            background-color: #D4AF37; /* Color dorado */
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .btn-dorado:hover {
-            background-color: #AA820A; /* Dorado más oscuro al pasar el cursor */
-        }
-    </style>
-</head>
-<body>
+<!-- FORMULARIO OPTIMIZADO: Cambie 'SU_FORM_ID' por su código real de Formspree -->
+<form id="miFormularioContacto" action="https://formspree.io" method="POST">
+    
+    <!-- Casilla 1: Nombre (Obligatorio atributo name) -->
+    <div>
+        <label>Nombre Completo:</label>
+        <input type="text" name="Nombre" placeholder="Ej: Juan Pérez" required>
+    </div>
+    
+    <!-- Casilla 2: Correo (Obligatorio atributo name e input de tipo email) -->
+    <div>
+        <label>Correo Electrónico:</label>
+        <input type="email" name="Email" placeholder="Ej: juan@correo.com" required>
+    </div>
+    
+    <!-- Casilla 3: Mensaje (Obligatorio atributo name) -->
+    <div>
+        <label>Mensaje o Consulta:</label>
+        <textarea name="Mensaje" placeholder="Escriba aquí su mensaje..." required></textarea>
+    </div>
+    
+    <!-- Su botón dorado original (Debe ser de tipo submit) -->
+    <button type="submit" class="SU_CLASE_DE_BOTON_DORADO">Enviar formulario</button>
+</form>
 
-<div class="form-container">
-    <!-- REMPLACE 'SU_FORM_ID' CON EL ID QUE LE DA FORMSPREE -->
-    <form action="https://formspree.io" method="POST">
+<!-- SCRIPT DE REDIRECCIÓN AUTOMÁTICA -->
+<script>
+    document.getElementById("miFormularioContacto").addEventListener("submit", function(e) {
+        e.preventDefault(); // Evita que la página salte a la web de Formspree
         
-        <!-- 1. DIRECCIÓN DE REDIRECCIÓN (Cambie por la URL real de su web en internet) -->
-        <input type="hidden" name="_next" value="https://sudominio.com">
+        var form = this;
+        var data = new FormData(form);
+        var button = form.querySelector('button[type="submit"]');
         
-        <!-- CASILLA 1: Nombre (Obligatorio tener el atributo 'name') -->
-        <div class="form-group">
-            <label for="nombre">Nombre Completo:</label>
-            <input type="text" id="nombre" name="Nombre" placeholder="Ej: Juan Pérez" required>
-        </div>
-        
-        <!-- CASILLA 2: Correo (Obligatorio tener 'name' y tipo 'email') -->
-        <div class="form-group">
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="Email" placeholder="Ej: juan@correo.com" required>
-        </div>
-        
-        <!-- CASILLA 3: Mensaje (Obligatorio tener el atributo 'name') -->
-        <div class="form-group">
-            <label for="mensaje">Mensaje o Consulta:</label>
-            <textarea id="mensaje" name="Mensaje" rows="4" placeholder="Escriba aquí su mensaje..." required></textarea>
-        </div>
-        
-        <!-- BOTÓN DE ENVÍO -->
-        <button type="submit" class="btn-dorado">Enviar formulario</button>
-        
-    </form>
-</div>
+        button.disabled = true;
+        button.innerText = "Enviando...";
 
-</body>
-</html>
+        fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                // Redirección forzada exitosa a su página de contacto
+                window.location.href = "contacto.html"; 
+            } else {
+                alert("Ocurrió un error al procesar el envío. Inténtelo más tarde.");
+                button.disabled = false;
+                button.innerText = "Enviar formulario";
+            }
+        }).catch(error => {
+            alert("Error de conexión. Inténtelo más tarde.");
+            button.disabled = false;
+            button.innerText = "Enviar formulario";
+        });
+    });
+</script>
