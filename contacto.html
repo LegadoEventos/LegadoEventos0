@@ -229,7 +229,7 @@
     <div class="container">
         <h1>CONTACTO</h1>
         
-        <p class="intro-contacto">Su consulta es el primer paso para crear juntos un evento inolvidable. Contáctenos.</p>
+        <p class="intro-contacto">Su consulta es el primer paso para crear juntos un evento inolbable. Contáctenos.</p>
         
         <div class="info-contacto">
             <span class="cargo">Email Empresarial</span>
@@ -245,7 +245,7 @@
             <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7070</a>
         </div>
         
-        <!-- FORMULARIO OPTIMIZADO CON PROCESAMIENTO EN SEGUNDO PLANO -->
+        <!-- FORMULARIO DE 3 CASILLAS CONECTADO CON TU CORREO -->
         <form id="miFormulario" action="https://formspree.io" method="POST" class="formulario-evento">
             
             <!-- CASILLA 1 -->
@@ -271,7 +271,8 @@
             <button type="submit" id="btnEnviar" class="btn-base btn-enviar-consulta">Enviar Formulario</button>
         </form>
         
-        <a href="eventos.html" class="btn-regresar">Volver al Inicio</a>
+        <!-- BOTÓN ACTUALIZADO PARA CONCORDANCIA GLOBAL -->
+        <a href="eventos.html" class="btn-regresar">Regresar al Inicio</a>
     </div>
 
     <!-- SCRIPT DE ENVÍO EN SEGUNDO PLANO Y AUTO-LIMPIEZA -->
@@ -296,7 +297,7 @@
             .then(response => {
                 if (response.ok) {
                     alerta.style.display = "block"; // Muestra mensaje de éxito
-                    formulario.reset(); // LIMPIA POR COMPLETO LAS 3 CASILLAS
+                    formulario.reset(); // Limpia por completo las 3 casillas
                     setTimeout(() => { alerta.style.display = "none"; }, 4000);
                 } else {
                     alert("Ocurrió un error al enviar. Por favor intente nuevamente.");
