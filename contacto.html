@@ -176,17 +176,6 @@
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
         }
 
-        /* Notificación sutil de envío exitoso */
-        .msg-alerta {
-            color: #d4af37;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-align: center;
-            margin-top: -10px;
-            font-weight: 400;
-            display: none;
-        }
-
         .btn-regresar { 
             text-decoration: none; color: rgba(255, 255, 255, 0.5); 
             border: 1px solid rgba(212, 175, 55, 0.3); 
@@ -245,9 +234,12 @@
             <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7070</a>
         </div>
         
-        <!-- FORMULARIO DE 3 CASILLAS CONECTADO CON TU CORREO -->
-        <form id="miFormulario" action="https://formspree.io" method="POST" class="formulario-evento">
+        <!-- FORMULARIO SEGURO NATIVO OPTIMIZADO PARA GITHUB PAGES -->
+        <form action="https://formspree.io" method="POST" class="formulario-evento">
             
+            <!-- Redirección automática configurada para tu URL de GitHub Pages -->
+            <input type="hidden" name="_next" value="https://legadoeventos.github.io/LegadoEventos0/contacto.html">
+
             <!-- CASILLA 1 -->
             <div class="grupo-campo">
                 <label for="necesidad">¿Que necesitan para su proximo evento?</label>
@@ -266,52 +258,12 @@
                 <input type="text" id="nombre_contacto" name="Nombre del Contacto" placeholder="Su nombre o el de su empresa..." required>
             </div>
 
-            <div id="alertaEnvio" class="msg-alerta">¡Consulta enviada con éxito!</div>
-
-            <button type="submit" id="btnEnviar" class="btn-base btn-enviar-consulta">Enviar Formulario</button>
+            <button type="submit" class="btn-base btn-enviar-consulta">Enviar Formulario</button>
         </form>
         
-        <!-- BOTÓN ACTUALIZADO PARA CONCORDANCIA GLOBAL -->
+        <!-- BOTÓN CONCORDANTE GLOBAL -->
         <a href="eventos.html" class="btn-regresar">Regresar al Inicio</a>
     </div>
-
-    <!-- SCRIPT DE ENVÍO EN SEGUNDO PLANO Y AUTO-LIMPIEZA -->
-    <script>
-        document.getElementById("miFormulario").addEventListener("submit", function(event) {
-            event.preventDefault(); // Detiene la redirección automática de pantalla
-            
-            const formulario = this;
-            const boton = document.getElementById("btnEnviar");
-            const alerta = document.getElementById("alertaEnvio");
-            const datos = new FormData(formulario);
-
-            boton.innerText = "Enviando...";
-            boton.disabled = true;
-
-            // Envía la información en formato AJAX oculto
-            fetch(formulario.action, {
-                method: formulario.method,
-                body: datos,
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alerta.style.display = "block"; // Muestra mensaje de éxito
-                    formulario.reset(); // Limpia por completo las 3 casillas
-                    setTimeout(() => { alerta.style.display = "none"; }, 4000);
-                } else {
-                    alert("Ocurrió un error al enviar. Por favor intente nuevamente.");
-                }
-            })
-            .catch(error => {
-                alert("Error de conexión. Intente nuevamente.");
-            })
-            .finally(() => {
-                boton.innerText = "Enviar Formulario";
-                boton.disabled = false;
-            });
-        });
-    </script>
 
 </body>
 </html>
