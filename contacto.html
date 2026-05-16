@@ -238,7 +238,7 @@
             <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7070</a>
         </div>
         
-        <!-- FORMULARIO CONFIGURADO CON SU ID OFICIAL -->
+        <!-- FORMULARIO CONECTADO AL ENDPOINT OFICIAL xykornod -->
         <form id="miFormularioContacto" class="formulario-evento">
 
             <!-- CASILLA 1 -->
@@ -248,7 +248,7 @@
                 <span data-fs-error="Necesidad del Evento" class="error-alerta"></span>
             </div>
 
-            <!-- CASILLA 2 -->
+            <!-- CASILLA 2 (Atributo name="email" requerido para el correcto envío del correo de Formspree) -->
             <div class="grupo-campo">
                 <label for="dato_contacto">Correo Electrónico de Contacto</label>
                 <input type="email" id="dato_contacto" name="email" placeholder="Ej: cliente@correo.com" data-fs-field required>
@@ -262,6 +262,7 @@
                 <span data-fs-error="Nombre del Contacto" class="error-alerta"></span>
             </div>
 
+            <!-- BOTÓN CONTROLADO POR EL SDK CON EL ATRIBUTO DE CONTROL data-fs-submit-btn -->
             <button type="submit" class="btn-base btn-enviar-consulta" data-fs-submit-btn>Enviar Formulario</button>
         </form>
         
@@ -269,7 +270,7 @@
         <a href="eventos.html" class="btn-regresar">Regresar al Inicio</a>
     </div>
 
-    <!-- SCRIPT CORREGIDO: PROCESA CON AJAX Y REDIRECCIONA LOCALMENTE -->
+    <!-- INTEGRACIÓN OFICIAL DEL SDK AJAX DE FORMSPREE CON REDIRECCIÓN DE ÉXITO -->
     <script>
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         
@@ -277,12 +278,12 @@
             formElement: '#miFormularioContacto', 
             formId: 'xykornod',
             onSuccess: function() {
-                // Redirección directa a la propia página de contacto local
-                window.location.href = "contacto.html";
+                // Redirección directa y segura a tu página en GitHub Pages tras el éxito
+                window.location.href = "https://github.io";
             }
         });
     </script>
-    <script src="https://unpkg.com" defer></script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
