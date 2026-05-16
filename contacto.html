@@ -16,7 +16,6 @@
             background-color: #000; color: #fff; 
             font-family: 'Montserrat', sans-serif; 
             display: flex; justify-content: center; align-items: center;
-            /* Se cambia a auto para permitir scroll si el contenido supera la pantalla en móviles cortos */
             overflow-x: hidden;
             overflow-y: auto;
         }
@@ -34,18 +33,17 @@
 
         .container { 
             text-align: center; width: 90%; max-width: 600px; padding: 60px 40px; 
-            /* Se bajó levemente la opacidad del fondo blanco para que trasluzca más el destello dorado */
             background: rgba(255, 255, 255, 0.015); 
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
-            border: 1px solid rgba(212, 175, 55, 0.15); /* Borde un poco más brillante */
+            border: 1px solid rgba(212, 175, 55, 0.15); 
             border-radius: 5px; 
             box-shadow: 0 30px 60px rgba(0,0,0,0.7); 
             box-sizing: border-box;
-            margin: 20px 0; /* Margen de seguridad para pantallas de baja altura */
+            margin: 40px 0; 
         }
 
         h1 { 
-            font-size: clamp(2rem, 7vw, 2.8rem); /* Tamaño fluido que se adapta al ancho de pantalla */
+            font-size: clamp(2rem, 7vw, 2.8rem); 
             letter-spacing: 8px; margin-top: 0; margin-bottom: 25px; 
             font-weight: 900; text-transform: uppercase; 
             color: #fff; text-shadow: 0 0 20px #d4af37;
@@ -53,7 +51,7 @@
 
         .intro-contacto {
             color: #d4af37;
-            font-size: clamp(0.95rem, 4vw, 1.1rem); /* Escala de tamaño para celulares */
+            font-size: clamp(0.95rem, 4vw, 1.1rem); 
             line-height: 1.6;
             letter-spacing: 1px;
             margin-bottom: 45px;
@@ -61,7 +59,7 @@
         }
 
         .info-contacto {
-            margin-bottom: 50px;
+            margin-bottom: 35px;
             font-size: 1.1rem;
             line-height: 1.8;
             color: rgba(255,255,255,0.8);
@@ -86,10 +84,108 @@
             transition: all 0.3s ease;
             display: inline-block;
             max-width: 100%;
-            word-wrap: break-word; /* Rompe el texto largo (como emails) para que no rompa el diseño */
-            font-size: clamp(0.85rem, 3.8vw, 1.1rem); /* Ajuste automático del tamaño de letra del link */
+            word-wrap: break-word; 
+            font-size: clamp(0.85rem, 3.8vw, 1.1rem); 
         }
         .link-contacto:hover { color: #d4af37; }
+
+        /* ==========================================================================
+           ESTILOS DEL FORMULARIO DE TRES CASILLAS
+           ========================================================================== */
+        .formulario-evento {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            text-align: left;
+            margin: 40px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .grupo-campo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .grupo-campo label {
+            color: #d4af37;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.4;
+        }
+
+        .grupo-campo input, 
+        .grupo-campo textarea {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 4px;
+            padding: 16px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .grupo-campo input:hover, 
+        .grupo-campo textarea:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .grupo-campo input:focus, 
+        .grupo-campo textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+        }
+
+        .grupo-campo input::placeholder, 
+        .grupo-campo textarea::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 0.85rem;
+        }
+
+        .btn-enviar-consulta {
+            background: #d4af37;
+            color: #000;
+            padding: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #d4af37;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 4px;
+            transition: all 0.5s ease;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+        
+        .btn-enviar-consulta:hover {
+            background: #000;
+            color: #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Notificación sutil de envío exitoso */
+        .msg-alerta {
+            color: #d4af37;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: -10px;
+            font-weight: 400;
+            display: none;
+        }
 
         .btn-regresar { 
             text-decoration: none; color: rgba(255, 255, 255, 0.5); 
@@ -108,48 +204,21 @@
             transform: scale(1.02);
         }
 
-        /* ==========================================================================
-           MEDIA QUERIES PARA RESPONSIVE DESIGN (MÓVILES Y TABLETS)
-           ========================================================================== */
         @media (max-width: 576px) {
-            .container {
-                padding: 40px 20px; /* Reducción de relleno lateral en celulares */
-                width: 92%;
-            }
-            
-            h1 {
-                letter-spacing: 4px; /* Menor espaciado para que entre en una sola línea */
-                margin-bottom: 20px;
-            }
-
-            .intro-contacto {
-                margin-bottom: 30px;
-            }
-
-            .info-contacto {
-                margin-bottom: 35px;
-            }
-            
-            .cargo {
-                margin-top: 20px;
-            }
-
-            .btn-regresar {
-                width: 100%; /* El botón ocupa todo el ancho disponible para facilitar el clic */
-                padding: 15px 20px;
-                letter-spacing: 2px;
-            }
+            .container { padding: 40px 20px; width: 92%; }
+            h1 { letter-spacing: 4px; margin-bottom: 20px; }
+            .intro-contacto { margin-bottom: 30px; }
+            .info-contacto { margin-bottom: 25px; }
+            .cargo { margin-top: 20px; }
+            .formulario-evento { gap: 20px; margin: 30px 0; }
+            .grupo-campo input, .grupo-campo textarea { padding: 14px; font-size: 0.9rem; }
+            .btn-enviar-consulta { padding: 16px; font-size: 0.85rem; letter-spacing: 2px; }
+            .btn-regresar { width: 100%; padding: 15px 20px; letter-spacing: 2px; }
         }
 
-        /* Ajuste para teléfonos extra pequeños o pantallas en modo horizontal corto */
         @media (max-height: 650px) {
-            body, html {
-                align-items: flex-start; /* Evita que el contenedor quede cortado arriba */
-            }
-            .container {
-                margin-top: 30px;
-                margin-bottom: 30px;
-            }
+            body, html { align-items: flex-start; }
+            .container { margin-top: 30px; margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -176,9 +245,72 @@
             <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7070</a>
         </div>
         
+        <!-- FORMULARIO OPTIMIZADO CON PROCESAMIENTO EN SEGUNDO PLANO -->
+        <form id="miFormulario" action="https://formspree.io" method="POST" class="formulario-evento">
+            
+            <!-- CASILLA 1 -->
+            <div class="grupo-campo">
+                <label for="necesidad">¿Que necesitan para su proximo evento?</label>
+                <textarea id="necesidad" name="¿Qué necesitan para el evento?" rows="4" placeholder="Escriba aquí los detalles, sistemas o equipamiento que requiere..." required></textarea>
+            </div>
+
+            <!-- CASILLA 2 -->
+            <div class="grupo-campo">
+                <label for="dato_contacto">Dato de contacto</label>
+                <input type="text" id="dato_contacto" name="Dato de Contacto" placeholder="Ej: E-mail. Celular. Red social." required>
+            </div>
+
+            <!-- CASILLA 3 -->
+            <div class="grupo-campo">
+                <label for="nombre_contacto">¿Con quien tenemos el gusto de hablar?</label>
+                <input type="text" id="nombre_contacto" name="Nombre del Contacto" placeholder="Su nombre o el de su empresa..." required>
+            </div>
+
+            <div id="alertaEnvio" class="msg-alerta">¡Consulta enviada con éxito!</div>
+
+            <button type="submit" id="btnEnviar" class="btn-base btn-enviar-consulta">Enviar Formulario</button>
+        </form>
+        
         <a href="eventos.html" class="btn-regresar">Volver al Inicio</a>
     </div>
 
+    <!-- SCRIPT DE ENVÍO EN SEGUNDO PLANO Y AUTO-LIMPIEZA -->
+    <script>
+        document.getElementById("miFormulario").addEventListener("submit", function(event) {
+            event.preventDefault(); // Detiene la redirección automática de pantalla
+            
+            const formulario = this;
+            const boton = document.getElementById("btnEnviar");
+            const alerta = document.getElementById("alertaEnvio");
+            const datos = new FormData(formulario);
+
+            boton.innerText = "Enviando...";
+            boton.disabled = true;
+
+            // Envía la información en formato AJAX oculto
+            fetch(formulario.action, {
+                method: formulario.method,
+                body: datos,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alerta.style.display = "block"; // Muestra mensaje de éxito
+                    formulario.reset(); // LIMPIA POR COMPLETO LAS 3 CASILLAS
+                    setTimeout(() => { alerta.style.display = "none"; }, 4000);
+                } else {
+                    alert("Ocurrió un error al enviar. Por favor intente nuevamente.");
+                }
+            })
+            .catch(error => {
+                alert("Error de conexión. Intente nuevamente.");
+            })
+            .finally(() => {
+                boton.innerText = "Enviar Formulario";
+                boton.disabled = false;
+            });
+        });
+    </script>
+
 </body>
 </html>
-
