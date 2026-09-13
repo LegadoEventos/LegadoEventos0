@@ -188,7 +188,6 @@
             transform: scale(1.02);
         }
 
-        /* Mensaje de error discreto para el validador oficial */
         .error-alerta {
             color: #ff4a4a;
             font-size: 0.8rem;
@@ -232,58 +231,107 @@
             <a href="mailto:malbanello@hotmail.com" class="link-contacto">malbanello@hotmail.com</a>
 
             <span class="cargo">Instagram</span>
-            <a href="https://instagram.com" target="_blank" class="link-contacto">@legado.eventos_</a>
+            <!-- Añadimos la barra de cierre '/' al final de legado.eventos_ -->
+            <a href="https://www.instagram.com/legado.eventos_/" target="_blank" class="link-contacto">@legado.eventos_</a>
 
             <span class="cargo">Teléfono / WhatsApp</span>
             <a href="https://wa.me" target="_blank" class="link-contacto">+54 11 3040 7071</a>
         </div>
         
-        <!-- FORMULARIO CONECTADO AL ENDPOINT OFICIAL xykornod -->
-        <form id="miFormularioContacto" class="formulario-evento">
+        <!-- FORMULARIO DIRECTO AL ENDPOINT CON PARÁMETROS LIMPIOS -->
+        <form id="miFormularioContacto" action="https://formspree.io/f/xeaqboqz" method="POST" class="formulario-evento">
 
             <!-- CASILLA 1 -->
             <div class="grupo-campo">
                 <label for="necesidad">¿Qué necesitan para su próximo evento?</label>
-                <textarea id="necesidad" name="Necesidad del Evento" rows="4" placeholder="Escriba aquí los detalles, sistemas o equipamiento que requiere..." data-fs-field required></textarea>
-                <span data-fs-error="Necesidad del Evento" class="error-alerta"></span>
+                <textarea id="necesidad" name="Necesidad del Evento" rows="4" placeholder="Escriba aquí los detalles, sistemas o equipamiento que requiere..." required></textarea>
             </div>
 
-            <!-- CASILLA 2 (Atributo name="email" requerido para el correcto envío del correo de Formspree) -->
+            <!-- CASILLA 2 -->
             <div class="grupo-campo">
                 <label for="dato_contacto">Correo Electrónico de Contacto</label>
-                <input type="email" id="dato_contacto" name="email" placeholder="Ej: cliente@correo.com" data-fs-field required>
-                <span data-fs-error="email" class="error-alerta"></span>
+                <input type="email" id="dato_contacto" name="email" placeholder="Ej: cliente@correo.com" required>
             </div>
 
             <!-- CASILLA 3 -->
             <div class="grupo-campo">
                 <label for="nombre_contacto">¿Con quién tenemos el gusto de hablar?</label>
-                <input type="text" id="nombre_contacto" name="Nombre del Contacto" placeholder="Su nombre o el de su empresa..." data-fs-field required>
-                <span data-fs-error="Nombre del Contacto" class="error-alerta"></span>
+                <input type="text" id="nombre_contacto" name="Nombre del Contacto" placeholder="Su nombre o el de su empresa..." required>
             </div>
 
-            <!-- BOTÓN CONTROLADO POR EL SDK CON EL ATRIBUTO DE CONTROL data-fs-submit-btn -->
-            <button type="submit" class="btn-base btn-enviar-consulta" data-fs-submit-btn>Enviar Formulario</button>
+            <button type="submit" class="btn-base btn-enviar-consulta">Enviar Formulario</button>
         </form>
         
+        <!-- CARTEL DE AGRADECIMIENTO OCULTO POR DEFECTO -->
+        <div id="cartelGracias" style="display: none; animation: heroFade 0.8s ease-out; padding: 20px 0;">
+            <h2 style="color: #d4af37; font-size: 1.6rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px;">¡Muchas Gracias!</h2>
+            <p style="color: #fff; font-size: 1rem; line-height: 1.6; font-weight: 300; margin-bottom: 30px;">
+                Su consulta ha sido recibida con éxito.<br>
+                En breve nos pondremos en contacto para presupuestar su evento.
+            </p>
+            <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem; letter-spacing: 1px;">
+                Redirigiendo al inicio en <span id="segundosReloj" style="color: #d4af37; font-weight: 700;">10</span> segundos...
+            </p>
+        </div>
+
+
         <!-- BOTÓN REGRESAR -->
         <a href="eventos.html" class="btn-regresar">Regresar al Inicio</a>
     </div>
 
-    <!-- INTEGRACIÓN OFICIAL DEL SDK AJAX DE FORMSPREE CON REDIRECCIÓN DE ÉXITO -->
     <script>
-        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        
-        formspree('initForm', { 
-            formElement: '#miFormularioContacto', 
-            formId: 'xykornod',
-            onSuccess: function() {
-                // Redirección directa y segura a tu página en GitHub Pages tras el éxito
-                window.location.href = "https://github.io";
-            }
+        document.getElementById("miFormularioContacto").addEventListener("submit", function(e) {
+            e.preventDefault(); 
+            
+            var form = this;
+            var data = new FormData(form);
+            var button = form.querySelector('.btn-enviar-consulta');
+            
+            button.disabled = true;
+            button.innerText = "Enviando...";
+
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    // 1. Ocultamos el formulario y el botón de regresar original
+                    form.style.display = "none";
+                    var btnRegresar = document.querySelector('.btn-regresar');
+                    if(btnRegresar) btnRegresar.style.display = "none";
+                    
+                    // 2. Encendemos el cartel de agradecimiento elegante
+                    var cartel = document.getElementById("cartelGracias");
+                    cartel.style.display = "block";
+                    
+                    // 3. Activamos el temporizador de cuenta regresiva de 10 segundos
+                    var tiempoRestante = 10;
+                    var relojTexto = document.getElementById("segundosReloj");
+                    
+                    var cuentaRegresiva = setInterval(function() {
+                        tiempoRestante--;
+                        relojTexto.innerText = tiempoRestante;
+                        
+                        if (tiempoRestante <= 0) {
+                            clearInterval(cuentaRegresiva);
+                            // 4. Al llegar a 0, redirige automáticamente
+                            window.location.href = "eventos.html";
+                        }
+                    }, 1000);
+
+                } else {
+                    alert("Ocurrió un error en el envío. Por favor intente más tarde.");
+                    button.disabled = false;
+                    button.innerText = "Enviar Formulario";
+                }
+            }).catch(error => {
+                alert("Error de conexión. Verifique su acceso a internet.");
+                button.disabled = false;
+                button.innerText = "Enviar Formulario";
+            });
         });
     </script>
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
