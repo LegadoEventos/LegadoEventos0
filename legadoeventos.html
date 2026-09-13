@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <!-- Línea de viewport obligatoria para activar el modo responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEGADO EVENTOS - Nuestra Esencia</title>
-    <!-- Carga corregida y completa de la tipografía Montserrat -->
+<title>Legado Eventos | Productora Técnica y Equipamiento de Vanguardia</title>    <!-- Carga corregida y completa de la tipografía Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
@@ -31,10 +30,16 @@
         }
 
         .hero-section {
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; 
-            padding: 0 20px; box-sizing: border-box;
+            /* Achicamos la altura forzada y le damos aire arriba y abajo */
+            padding: 40px 20px 0px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            text-align: center; 
+            box-sizing: border-box;
+            width: 100%;
         }
+
 
         .hero-section h1 {
             font-size: clamp(2.2rem, 7vw, 5rem); font-weight: 900;
@@ -47,7 +52,7 @@
             margin-top: 25px; text-transform: uppercase; font-weight: 300; line-height: 1.5; max-width: 90%;
         }
 
-        .content-wrap { max-width: 900px; margin: -30px auto 100px; padding: 0 20px; box-sizing: border-box; }
+        .content-wrap { max-width: 900px; margin: 60px auto 100px; padding: 0 20px; box-sizing: border-box; }
 
         .glass-card {
             background: rgba(0, 0, 0, 0.5); 
@@ -133,6 +138,85 @@
                 letter-spacing: 2px;
             }
         }
+
+        /* ==========================================
+           CARRUSEL INTERACTIVO 3D EN ARCO (PARTE 1)
+           ========================================== */
+        .arco-escena {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            margin: 50px auto 20px;
+            perspective: 1000px; /* Crea el espacio 3D para que las fotos vayan hacia atrás */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+            user-select: none;
+        }
+        .arco-escena:active { cursor: grabbing; }
+
+        .arco-contenedor {
+            position: relative;
+            width: 200px;
+            height: 270px;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arco-slide {
+            position: absolute;
+            width: 110px;
+            height: 170px;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            overflow: hidden;
+            background: #000;
+            backface-visibility: visible;
+transition: transform 0.4s ease, border-color 0.3s, box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+            
+            /* EFECTO APAGADO PARA LOS COSTADOS: Bajamos opacidad y metemos desenfoque */
+            opacity: 0.4;
+            filter: blur(3px) grayscale(30%);
+        }
+
+        .arco-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            display: block;
+        }
+
+        /* La foto que queda de frente (activa) se ilumina y se enfoca al 100% */
+        .arco-slide.activa {
+            border-color: #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), 0 10px 40px rgba(0,0,0,0.9);
+            cursor: pointer;
+            
+            /* EFECTO ACTIVO: 100% nítida, brillante y sin filtros */
+            opacity: 1;
+            filter: blur(0px) grayscale(0%);
+        }
+
+        /* VISOR DE FOTO GIGANTE (Efecto Lupa/Lightbox) */
+        .visor-fijo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            z-index: 2000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .visor-fijo.abierto { opacity: 1; visibility: visible; }
+        .visor-img { max-width: 90%; max-height: 85vh; border-radius: 4px; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 0 50px rgba(0,0,0,0.8); }
+        .visor-cerrar { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 2rem; cursor: pointer; font-weight: 300; transition: color 0.3s; }
+        .visor-cerrar:hover { color: #d4af37; }
+
     </style>
 </head>
 <body>
@@ -141,6 +225,80 @@
         <h1>LEGADO EVENTOS</h1>
         <div class="tagline">planificamos momentos, creamos recuerdos</div>
     </section>
+
+    <!-- ==========================================
+       CARRUSEL INTERACTIVO 3D EN ARCO (PARTE 2)
+       ========================================== -->
+    <div class="arco-escena">
+        <div class="arco-contenedor">
+            <!-- AQUÍ PODÉS AGREGAR O QUITAR LAS FOTOS QUE QUIERAS ENUMERÁNDOLAS AL FINAL -->
+            <div class="arco-slide"><img src="foto1.jpg" alt="Montaje de pantallas LED en eventos corporativos"></div>
+
+	    <div class="arco-slide"><video src="video2.mp4" muted style="width: 100%; height: 100%; object-fit: cover;"></video></div>
+
+            <div class="arco-slide"><img src="foto2.jpg" alt="Sistemas de sonido profesional en Buenos Aires"></div>
+            <div class="arco-slide"><img src="foto3.jpg" alt="Iluminación robótica y efectos para eventos"></div>
+            <div class="arco-slide"><img src="foto4.jpg" alt="Puestas en escena integrales de alta tecnología"></div>
+            <div class="arco-slide"><img src="foto5.jpg" alt="Estructuras de vanguardia para recitales y congresos"></div>
+
+	    <div class="arco-slide"><video src="video3.mp4" muted style="width: 100%; height: 100%; object-fit: cover;"></video></div>
+
+
+            <div class="arco-slide"><img src="foto6.jpg" alt="Montaje de pantallas LED en eventos corporativos"></div>
+            <div class="arco-slide"><img src="foto7.jpg" alt="Sistemas de sonido profesional en Buenos Aires"></div>
+            <div class="arco-slide"><img src="foto8.jpg" alt="Iluminación robótica y efectos para eventos"></div>
+            <div class="arco-slide"><img src="foto9.jpg" alt="Puestas en escena integrales de alta tecnología"></div>
+            <div class="arco-slide"><img src="foto10.jpg" alt="Estructuras de vanguardia para recitales y congresos"></div>
+            <div class="arco-slide"><img src="foto11.jpg" alt="Montaje de pantallas LED en eventos corporativos"></div>
+            <div class="arco-slide"><img src="foto12.jpg" alt="Sistemas de sonido profesional en Buenos Aires"></div>
+
+	    <div class="arco-slide"><video src="video4.mp4" muted style="width: 100%; height: 100%; object-fit: cover;"></video></div>
+
+
+            <div class="arco-slide"><img src="foto13.jpg" alt="Iluminación robótica y efectos para eventos"></div>
+            <div class="arco-slide"><img src="foto14.jpg" alt="Puestas en escena integrales de alta tecnología"></div>
+            <div class="arco-slide"><img src="foto15.jpg" alt="Estructuras de vanguardia para recitales y congresos"></div>
+            <div class="arco-slide"><img src="foto16.jpg" alt="Estructuras de vanguardia para recitales y congresos"></div>
+            <div class="arco-slide"><img src="foto17.jpg" alt="Montaje de pantallas LED en eventos corporativos"></div>
+            <div class="arco-slide"><img src="foto18.jpg" alt="Sistemas de sonido profesional en Buenos Aires"></div>
+
+	    <div class="arco-slide"><video src="video5.mp4" muted style="width: 100%; height: 100%; object-fit: cover;"></video></div>
+
+
+            <div class="arco-slide"><img src="foto19.jpg" alt="Iluminación robótica y efectos para eventos"></div>
+            <div class="arco-slide"><img src="foto20.jpg" alt="Puestas en escena integrales de alta tecnología"></div>
+            <div class="arco-slide"><img src="foto21.jpg" alt="Estructuras de vanguardia para recitales y congresos"></div>
+            <div class="arco-slide"><img src="foto22.jpg" alt="Montaje de pantallas LED en eventos corporativos"></div>
+            <div class="arco-slide"><img src="foto23.jpg" alt="Sistemas de sonido profesional en Buenos Aires"></div>
+            <div class="arco-slide"><img src="foto24.jpg" alt="Iluminación robótica y efectos para eventos"></div>
+            <div class="arco-slide"><img src="foto25.jpg" alt="Puestas en escena integrales de alta tecnología"></div>
+            <div class="arco-slide"><img src="foto26.jpg" alt="Estructuras de vanguardia para recitales y congresos"></div>
+            <div class="arco-slide"><img src="foto27.jpg" alt="Montaje de pantallas LED en eventos corporativos"></div>
+            <div class="arco-slide"><img src="foto28.jpg" alt="Sistemas de sonido profesional en Buenos Aires"></div>
+
+        </div>
+    </div>
+
+    <!-- VISOR DE FOTO GIGANTE OCULTO POR DEFECTO -->
+    <div id="visorFoto" class="visor-fijo">
+        <span class="visor-cerrar" id="cerrarVisor">&times;</span>
+
+        <!-- Flechas de navegación del visor -->
+        <span id="visorPrev" style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 3rem; cursor: pointer; user-select: none; transition: color 0.3s; font-weight: 300;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#fff'">&#10094;</span>
+        <span id="visorNext" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 3rem; cursor: pointer; user-select: none; transition: color 0.3s; font-weight: 300;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#fff'">&#10095;</span>
+
+
+        <!-- Mantenemos la imagen y agregamos el contenedor de video oculto por defecto -->
+        <img class="visor-img" id="imgVisor" src="" alt="Vista ampliada del evento" style="display: none;">
+<video class="visor-img" id="videoVisor" controls muted style="display: none; max-width: 90%; max-height: 85vh; border-radius: 4px; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 0 50px rgba(0,0,0,0.8);"></video>
+    </div>
+
+
+    <!-- REPRODUCTOR DE AUDIO INVISIBLE PARA LA MÚSICA CHILLOUT DE LOS VIDEOS -->
+    <audio id="musicaFondo" src="musica.mp3" loop></audio>
+
+
+
 
     <div class="content-wrap">
         <div class="glass-card">
@@ -165,6 +323,192 @@
         </div>
     </div>
 
+
+    <!-- ==========================================================================
+       MOTOR CORREGIDO: ARCO 3D MULTIMEDIA, AUDIO SINCRO Y DRAG RESPONSIVE CELULAR
+       ========================================================================== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const escena = document.querySelector('.arco-escena');
+            const contenedor = document.querySelector('.arco-contenedor');
+            const slides = Array.from(document.querySelectorAll('.arco-slide'));
+            const visor = document.getElementById('visorFoto');
+            const imgVisor = document.getElementById('imgVisor');
+            const videoVisor = document.getElementById('videoVisor');
+            const musicaFondo = document.getElementById('musicaFondo');
+            const botonCerrar = document.getElementById('cerrarVisor');
+            const btnPrev = document.getElementById('visorPrev');
+            const btnNext = document.getElementById('visorNext');
+            
+            if (slides.length === 0) return;
+
+            let anguloPorSlide = 360 / slides.length;
+            let radio = 560; 
+            let rotacionActual = 0;
+            let inicioX = 0;
+            let arrastrando = false;
+            let indiceImagenActual = 0;
+
+            function actualizarPosiciones() {
+                slides.forEach((slide, indice) => {
+                    let anguloElemento = (indice * anguloPorSlide) + rotacionActual;
+                    let anguloNormalizado = ((anguloElemento + 180) % 360 + 360) % 360 - 180;
+                    
+                    if (Math.abs(anguloNormalizado) < (anguloPorSlide / 2)) {
+                        slide.classList.add('activa');
+                    } else {
+                        slide.classList.remove('activa');
+                    }
+
+                    let cercaniaAlCentro = Math.cos(anguloNormalizado * Math.PI / 180);
+                    let escalaDinamica = 0.6 + (0.4 * Math.max(0, cercaniaAlCentro));
+
+                    slide.style.transform = `rotateY(${anguloElemento}deg) translateZ(${radio}px) scale(${escalaDinamica})`;
+                });
+            }
+
+            actualizarPosiciones();
+
+            // --- CORRECCIÓN CLAVE: GESTIÓN DE ARRASTRE PARA MOUSE Y CELULARES ---
+            function obtenerX(e) {
+                // Si es un evento táctil de celular, lee correctamente el primer dedo [0]
+                if (e.touches && e.touches.length > 0) {
+                    return e.touches[0].pageX;
+                }
+                return e.pageX;
+            }
+
+            function iniciarArrastre(e) {
+                arrastrando = true;
+                inicioX = obtenerX(e);
+                escena.style.cursor = 'grabbing';
+            }
+
+            function moverArrastre(e) {
+                if (!arrastrando) return;
+                const x_actual = obtenerX(e);
+                const diferenciaX = x_actual - inicioX;
+                rotacionActual += diferenciaX * 0.15; 
+                inicioX = x_actual;
+                actualizarPosiciones();
+            }
+
+            function finalizarArrastre() {
+                if (!arrastrando) return;
+                arrastrando = false;
+                escena.style.cursor = 'grab';
+
+                let indiceMasCercano = 0;
+                let menorDiferencia = Infinity;
+
+                slides.forEach((_, indice) => {
+                    let anguloElemento = (indice * anguloPorSlide) + rotacionActual;
+                    let anguloNormalizado = ((anguloElemento + 180) % 360 + 360) % 360 - 180;
+                    if (Math.abs(anguloNormalizado) < menorDiferencia) {
+                        menorDiferencia = Math.abs(anguloNormalizado);
+                        indiceMasCercano = indice;
+                    }
+                });
+
+                let anguloDestino = -indiceMasCercano * anguloPorSlide;
+                let diferenciaRotacion = anguloDestino - rotacionActual;
+                diferenciaRotacion = ((diferenciaRotacion + 180) % 360 + 360) % 360 - 180;
+                rotacionActual += diferenciaRotacion;
+
+                contenedor.style.transition = 'transform 0.4s ease-out';
+                actualizarPosiciones();
+                setTimeout(() => { contenedor.style.transition = 'transform 0.1s ease-out'; }, 400);
+            }
+
+            // Eventos Mouse PC
+            escena.addEventListener('mousedown', iniciarArrastre);
+            window.addEventListener('mousemove', moverArrastre);
+            window.addEventListener('mouseup', finalizarArrastre);
+            
+            // Eventos Táctiles Celular (Corregidos con pasividad para evitar bloqueos del scroll)
+            escena.addEventListener('touchstart', iniciarArrastre, { passive: true });
+            escena.addEventListener('touchmove', moverArrastre, { passive: true });
+            escena.addEventListener('touchend', finalizarArrastre);
+
+            // --- CONTROL MULTIMEDIA INTELIGENTE ---
+            slides.forEach((slide, indice) => {
+                slide.addEventListener('click', () => {
+                    if (slide.classList.contains('activa')) {
+                        indiceImagenActual = indice;
+                        mostrarMultimediaEnVisor();
+                    }
+                });
+            });
+
+            function mostrarMultimediaEnVisor() {
+                const slideActual = slides[indiceImagenActual];
+                const tieneImagen = slideActual.querySelector('img');
+                const tieneVideo = slideActual.querySelector('video');
+
+                imgVisor.style.display = "none";
+                videoVisor.style.display = "none";
+                videoVisor.pause();
+                videoVisor.src = "";
+                if (musicaFondo) musicaFondo.pause();
+
+                if (tieneImagen) {
+                    imgVisor.src = tieneImagen.src;
+                    imgVisor.style.display = "block";
+                    visor.classList.add('abierto');
+                } else if (tieneVideo) {
+                    videoVisor.src = tieneVideo.src;
+                    videoVisor.style.display = "block";
+                    visor.classList.add('abierto');
+                    
+                    videoVisor.muted = true; 
+                    videoVisor.play();
+                    
+                    if (musicaFondo) {
+                        musicaFondo.currentTime = 0;
+                        musicaFondo.play();
+                    }
+                }
+            }
+
+            function cambiarImagenVisor(direccion) {
+                indiceImagenActual = (indiceImagenActual + direccion + slides.length) % slides.length;
+                mostrarMultimediaEnVisor();
+            }
+
+            btnPrev.addEventListener('click', (e) => { e.stopPropagation(); cambiarImagenVisor(-1); });
+            btnNext.addEventListener('click', (e) => { e.stopPropagation(); cambiarImagenVisor(1); });
+
+            videoVisor.addEventListener('volumechange', () => {
+                if (musicaFondo) {
+                    musicaFondo.volume = videoVisor.volume;
+                    musicaFondo.muted = videoVisor.muted;
+                }
+            });
+
+            videoVisor.addEventListener('ended', () => {
+                if (musicaFondo) musicaFondo.pause();
+            });
+
+            videoVisor.addEventListener('play', () => {
+                if (musicaFondo) musicaFondo.play();
+            });
+            videoVisor.addEventListener('pause', () => {
+                if (musicaFondo) musicaFondo.pause();
+            });
+
+            function cerrarVisorCompleto() {
+                visor.classList.remove('abierto');
+                videoVisor.pause();
+                if (musicaFondo) musicaFondo.pause();
+            }
+
+            botonCerrar.addEventListener('click', cerrarVisorCompleto);
+            visor.addEventListener('click', (e) => {
+                if (e.target === visor) { cerrarVisorCompleto(); }
+            });
+        });
+    </script>
+
+
 </body>
 </html>
-
