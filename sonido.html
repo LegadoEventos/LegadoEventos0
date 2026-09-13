@@ -267,16 +267,17 @@
             
             <header class="header-sonido">
                 <h1>SONIDO</h1>
-                <p>Sistemas de audio de alta fidelidad, consolas digitales y microfonía de vanguardia para eventos de alto impacto.</p>
+                <!-- Optimizamos sutilmente la descripción agregando el enfoque en Buenos Aires / Cobertura nacional -->
+                <p>Sistemas de audio de alta fidelidad, consolas digitales y microfonía de vanguardia para eventos corporativos y sociales de alto impacto en Buenos Aires y todo el país.</p>
             </header>
             
             <div class="contenedor-rectangulos">
                 
-                <!-- 1. Rectángulo con efecto Hover: Equipamiento -->
+                <!-- 1. Rectángulo con efecto Hover: Equipamiento Principal -> Pasamos a Sistemas Line Array -->
                 <div class="rectangulo-tecnico">
                     <div class="texto-contenido">
-                        <h2>Equipamiento Principal</h2>
-                        <p>Descripción provisoria para los sistemas de audio principales, potencia y cobertura acústica del evento.</p>
+                        <h2>Sistemas de Sonido Profesional</h2>
+                        <p>Alquiler y montaje de equipamiento de audio de alta fidelidad y sistemas Line Array. Cobertura acústica uniforme adaptada a salones, predios corporativos o festivales.</p>
                     </div>
                     <div class="carrusel-oculto">
                         <div class="carrusel-slide active"><img src="equipamiento-1.jpg" alt="Equipamiento Sonido 1"></div>
@@ -285,11 +286,11 @@
                     </div>
                 </div>
 
-                <!-- 2. Rectángulo con efecto Hover: Control -->
+                <!-- 2. Rectángulo con efecto Hover: Control y Monitoreo -> Pasamos a Consolas y Operación -->
                 <div class="rectangulo-tecnico">
                     <div class="texto-contenido">
-                        <h2>Control y Monitoreo</h2>
-                        <p>Descripción provisoria para la ingeniería de mezcla, consolas digitales y retornos para el escenario.</p>
+                        <h2>Consolas Digitales y Microfonía</h2>
+                        <p>Ingeniería de mezcla, consolas digitales de última generación y sistemas de microfonía inalámbrica (diademas y corbateros) para conferencias, congresos y shows.</p>
                     </div>
                     <div class="carrusel-oculto">
                         <div class="carrusel-slide active"><img src="control-1.jpg" alt="Control 1"></div>
@@ -308,18 +309,15 @@
         </div>
     </div>
 
-    <!-- Script para control de transiciones independientes en hover -->
+    <!-- Tu script original sigue abajo exactamente igual... -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const rectangulos = document.querySelectorAll(".rectangulo-tecnico");
-
             rectangulos.forEach(rectangulo => {
                 const slides = rectangulo.querySelectorAll(".carrusel-slide");
                 if (slides.length === 0) return;
-
                 let intervalo = null;
                 let indiceActivo = 0;
-
                 rectangulo.addEventListener("mouseenter", () => {
                     intervalo = setInterval(() => {
                         slides[indiceActivo].classList.remove("active");
@@ -327,7 +325,6 @@
                         slides[indiceActivo].classList.add("active");
                     }, 2000);
                 });
-
                 rectangulo.addEventListener("mouseleave", () => {
                     clearInterval(intervalo);
                     slides.forEach(slide => slide.classList.remove("active"));
@@ -339,4 +336,3 @@
     </script>
 </body>
 </html>
-
