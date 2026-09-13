@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>LEGADO EVENTOS - Secul</title>
     <!-- Enlace a Montserrat -->
-    <link href="googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         body, html { 
             margin: 0; padding: 0; min-height: 100%; 
@@ -21,7 +21,7 @@
             z-index: -2;
         }
 
-        /* HERO IGUALADO A LA SECCIÓN VIDEO */
+        /* HERO ORIGINAL INTACTO */
         .hero-video {
             height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('TU_IMAGEN.jpg');
@@ -58,17 +58,18 @@
             .specs-grid { grid-template-columns: 1fr; }
         }
 
+        /* CAJAS ORIGINALES CON CAMBIO DE TRANSICIÓN SUAVE */
         .spec-item {
             position: relative; 
             min-height: 220px; 
             border-radius: 5px; 
-            border: none; 
+            border: 1px solid rgba(212, 175, 55, 0.05); /* Borde casi invisible de base */
             overflow: hidden;
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            background: transparent; 
-            transition: all 0.5s ease;
+            background: rgba(255, 255, 255, 0.01); /* Un toque mínimo para que no esté vacío */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .item-centrado-abajo {
@@ -95,7 +96,13 @@
             text-shadow: 0 2px 10px #000;
         }
 
-        .spec-item:hover { transform: scale(1.05); }
+        /* EFECTO DE ILUMINACIÓN SUTIL EN EL HOVER */
+        .spec-item:hover { 
+            transform: scale(1.03); 
+            border-color: rgba(212, 175, 55, 0.35); /* El borde se enciende en oro */
+            background: rgba(212, 175, 55, 0.03); /* Se inyecta un destello interno */
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2); /* Resplandor hacia afuera estilo neón suave */
+        }
 
         .nav-footer { text-align: center; display: flex; flex-direction: column; align-items: center; }
         
@@ -122,7 +129,6 @@
 
     <div class="background-image"></div>
 
-    <!-- Frase del Hero con el corte solicitado -->
     <section class="hero-video">
         <h1>LUCES</h1>
         <p>Diseño de iluminación inteligente, cabezales móviles y<br>efectos atmosféricos diseñados para crear climas únicos en cada evento.</p>
@@ -135,10 +141,10 @@
                 <!-- 1. DMX -->
                 <div class="spec-item">
                     <div class="spec-content">
-                        <h3>DMX</h3>
+                        <h3>ILUMINACIÓN ROBÓTICA DMX</h3>
                         <p>
-                            Diseñado para un control centralizado<br>
-                            y una gestión ágil en tiempo real, priorizando la<br>
+                            Sistemas de cabezales móviles controlados por DMX centralizado.<br>
+                            Diseñado para una gestión ágil en tiempo real, priorizando la<br>
                             máxima prolijidad en el despliegue técnico del cableado.
                         </p>
                     </div>
@@ -147,10 +153,10 @@
                 <!-- 2. EQUIPOS INALAMBRICOS -->
                 <div class="spec-item">
                     <div class="spec-content">
-                        <h3>Equipos inalambricos</h3>
+                        <h3>AMBIENTACIÓN INALÁMBRICA</h3>
                         <p>
-                            Sistemas de iluminación sin cables de alta autonomía<br>
-                            para perímetros más estéticos.
+                            Sistemas de iluminación LED perimetral sin cables de alta autonomía.<br>
+                            Ideales para bañar estructuras o salones logrando perímetros más estéticos.
                         </p>
                     </div>
                 </div>
@@ -158,10 +164,11 @@
                 <!-- 3. CONSOLAS -->
                 <div class="spec-item item-centrado-abajo">
                     <div class="spec-content">
-                        <h3>CONSOLAS</h3>
+                        <h3>CONSOLAS DE CONTROL</h3>
                         <p>
+                            Programación avanzada en consolas de última generación.<br>
                             Librerías ordenadas para no demorar<br>
-                            o entorpecer una correcta sincronía.
+                            o entorpecer una correcta sincronía en vivo.
                         </p>
                     </div>
                 </div>
